@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type='text/css'>
+    :root {
+  --border-normal: hsla(214, 65%, 35%, .70);
+  --border-focus: hsl(214, 65%, 35%);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  min-height: 100vh;
+  padding: 1rem;
+  background-color: hsl(25, 50%, 95%);
+}
+input {
+  width: 100%;
+  height: 50px;
+  padding: 1rem;
+  border: 1px solid var(--border-normal);
+  border-radius: 5px;
+}
+button {
+  border: none;
+}
+.calc-btn {
+  width: 200px;
+  height: 50px;
+  color: hsl(215, 65%, 80%);
+  background-color: var(--border-focus);
+  border-radius: 5px;
+}
+.total {
+  font-weight: bold;
+}
+.hide {
+  visibility: hidden;
+}
+.show {
+  visibility: visible;
+}
+input:focus {
+  border: 1px solid var(--border-focus);
+  outline: inherit;
+}
+input::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+  </style>
+  <title>Calculador M3</title>
+</head>
+<body>
+  <input class='box-type-7' type='number' placeholder='Cantidad cajas 7...' />
+  <input class='box-type-10' type='number' placeholder='Cantidad cajas 10...' />
+  <p class='total hide'>TOTAL: </p>
+  <button type='button' class='calc-btn'>CALCULAR M3</button>
+  <script>
+    const $BoxSeven = document.querySelector('.box-type-7')
+    const $BoxTen = document.querySelector('.box-type-10')
+    const $Total = document.querySelector('.total')
+
+    document.addEventListener('click', (e) => {
+      if(e.target.matches('.calc-btn')) {
+        const boxSevenM3 = Number($BoxSeven.value) * 0.06
+        const boxTenM3 = Number($BoxTen.value) * 0.096
+        const totalM3 = boxSevenM3 + boxTenM3
+        $Total.classList.replace('hide', 'show')
+        $Total.textContent = `Total: ${totalM3}`
+      }
+    })
+  </script>
+</body>
+</html>
